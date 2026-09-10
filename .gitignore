@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+*.gguf
+models/
+.env
+data/
+uploads/
+*.log

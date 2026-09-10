@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAIT AI — Intelligent Document Assistant</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+    <div class="bg-orbs" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div id="app">
+        <aside id="sidebar">
+            <div class="sidebar-inner">
+                <div class="brand">
+                    <div class="brand-logo-wrap">
+                        <img src="logo.png" alt="SAIT AI" class="brand-logo">
+                        <span class="brand-status-dot"></span>
+                    </div>
+                    <div class="brand-text">
+                        <span class="brand-name">SAIT AI</span>
+                        <span class="brand-sub">Document Assistant</span>
+                    </div>
+                </div>
+
+                <button id="newChatBtn" class="btn-new-chat">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                    New Chat
+                </button>
+
+                <label class="website-toggle" for="websiteMode">
+                    <input type="checkbox" id="websiteMode">
+                    <span class="toggle-slider"></span>
+                    <span class="website-toggle-text">
+                        <span class="wt-title">🌐 Ask College Website</span>
+                        <span class="wt-sub">Answers from saitjbp.in</span>
+                    </span>
+                </label>
+                <div class="website-sync-row">
+                    <span id="websiteSyncStatus" class="website-sync-status">College data: syncing</span>
+                    <button id="websiteSyncBtn" class="website-sync-btn" title="Refresh college data">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                        Refresh
+                    </button>
+                </div>
+
+                <div class="sidebar-sec" id="historySec">
+                    <div class="section-title">Chat History</div>
+                    <div id="historyList" class="history-list">
+                        <div class="doc-empty"><span>No chats yet.</span></div>
+                    </div>
+                </div>
+
+                <div class="sidebar-sec">
+                    <div class="section-title">Knowledge Library</div>
+                    <div id="docList" class="doc-list">
+                        <div class="doc-empty">
+                            <div class="empty-icon">📚</div>
+                            <span>No documents yet.<br>Upload to teach SAIT AI.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upload-card">
+                    <div class="upload-glow"></div>
+                    <label class="btn-upload" for="fileInput">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        Upload Document
+                    </label>
+                    <input type="file" id="fileInput" multiple hidden>
+                    <input type="text" id="tagInput" class="tags-input" placeholder="Add tags… (comma separated)">
+                    <div class="upload-hint">PDF, DOCX, TXT, images</div>
+                </div>
+
+                <div class="sidebar-footer">
+                    <a href="http://localhost:8083/docs" target="_blank" class="footer-link">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        API Documentation
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <main id="main">
+            <header id="topbar">
+                <div class="topbar-left">
+                    <button id="sidebarToggle" class="icon-btn" title="Toggle sidebar">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    </button>
+                    <div class="top-brand">
+                        <img src="logo.png" alt="logo" class="top-logo">
+                        <span class="top-title">SAIT AI</span>
+                    </div>
+                </div>
+                <div class="topbar-right">
+                    <span id="statusPill" class="status-pill"><span class="dot"></span>connecting…</span>
+                </div>
+            </header>
+
+            <section id="chatArea" class="chat-area">
+                <div id="welcome" class="welcome">
+                    <div class="welcome-logo-wrap">
+                        <img src="logo.png" alt="SAIT AI" class="welcome-logo">
+                        <div class="welcome-ring"></div>
+                    </div>
+                    <h1>Hello, I'm <span class="grad-text">SAIT AI</span></h1>
+                    <p>Ask me anything about your documents.<br>I read them so you don't have to.</p>
+                    <div class="welcome-chips">
+                        <div class="chip" data-prompt="Summarize the key points of my documents">📝 Summarize my documents</div>
+                        <div class="chip" data-prompt="What are the main topics covered in my documents?">🔍 Find main topics</div>
+                        <div class="chip" data-prompt="Explain the most important concept in simple terms">💡 Explain a concept</div>
+                    </div>
+                </div>
+                <div id="messages" class="messages"></div>
+                <div id="scrollAnchor"></div>
+            </section>
+
+            <footer id="inputBar" class="input-bar">
+                <div id="activeDocRow" class="active-doc-row hidden">
+                    <span class="lock-icon">🔒</span>
+                    <span>Answering from:</span>
+                    <span id="activeDocName" class="active-doc-name"></span>
+                    <button id="clearDocBtn" class="chip-x" title="Clear document filter">✕</button>
+                </div>
+                <div class="input-shell">
+                    <div class="input-row">
+                        <textarea id="chatInput" rows="1" placeholder="Message SAIT AI…"></textarea>
+                        <button id="sendBtn" class="btn-send" title="Send">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="input-footer">
+                    <span class="input-hint">SAIT AI can make mistakes — verify important details.</span>
+                    <span class="input-brand">powered by <b>SAIT AI</b></span>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+    <div id="uploadOverlay" class="overlay hidden">
+        <div class="overlay-card">
+            <div class="spinner-ring"></div>
+            <div id="uploadStatusText">Uploading…</div>
+        </div>
+    </div>
+
+    <script src="app.js?v=5"></script>
+</body>
+</html>

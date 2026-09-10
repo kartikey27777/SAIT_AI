@@ -1,0 +1,14 @@
+healthCheckTimeout: 600
+
+models:
+  qwen2:1.5b:
+    cmd: llama-server --port ${PORT} --model /models/qwen2-1.5b-instruct-q4_k_m.gguf --ctx-size 2048
+    ttl: 0
+    aliases:
+      - qwen2
+    timeouts:
+      connect: 30
+      keepalive: 0
+      responseHeader: 0
+      tlsHandshake: 10
+      idleConn: 90

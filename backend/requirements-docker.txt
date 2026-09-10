@@ -1,0 +1,17 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch --index-url https://download.pytorch.org/whl/cpu
+sentence-transformers
+uvicorn
+fastapi
+qdrant-client
+pymupdf
+langchain-text-splitters
+psycopg2-binary
+python-docx
+python-multipart
+httpx
+pytesseract
+pillow
+openpyxl
+python-pptx
+beautifulsoup4

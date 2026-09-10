@@ -1,0 +1,6 @@
+backend/uploads/
+uploads/
+*.gguf
+__pycache__/
+*.pyc
+models/.cache/

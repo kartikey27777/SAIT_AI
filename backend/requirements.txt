@@ -1,0 +1,16 @@
+torch
+sentence-transformers
+uvicorn
+paddleocr
+fastapi
+qdrant-client
+pymupdf
+langchain-text-splitters
+psycopg2-binary
+python-docx
+python-multipart
+httpx
+openpyxl
+python-pptx
+beautifulsoup4
+Pillow
